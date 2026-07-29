@@ -549,12 +549,12 @@ function App() {
                 <MapContainer center={[-35.6, -58.0]} zoom={10} style={{ height: '100%', width: '100%', zIndex: 1 }}>
                   <TileLayer
                     attribution='&copy; <a href="https://carto.com/">CARTO</a>'
-                    url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+                    url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
                   />
                   {geoJsonData && (
                     <GeoJSON 
                       data={geoJsonData} 
-                      style={{ color: '#38bdf8', weight: 2, opacity: 0.8, fillOpacity: 0.05 }}
+                      style={{ color: '#0284c7', weight: 2, opacity: 0.8, fillOpacity: 0.1 }}
                     />
                   )}
                   {establecimientos.map(est => {

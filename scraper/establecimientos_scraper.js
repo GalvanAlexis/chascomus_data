@@ -124,13 +124,26 @@ async function scraperEstablecimientos() {
     console.log("3. Inyectando dependencias en Supabase...");
     
     // Asignar coordenadas base (Chascomús centro) con dispersión para simular distribución
+    // Ajuste: Evitamos restar mucha lat/lng negativa para no caer en la Laguna de Chascomús (que está al NO).
     const centerLat = -35.5761;
     const centerLng = -58.0097;
     const dataWithCoords = establecimientosData.map(est => {
         // Dispersión mayor para escuelas rurales
-        const spread = (est.telefono && est.telefono.includes('Rural')) ? 0.3 : 0.03;
-        const latitud = (centerLat + (Math.random() - 0.5) * spread).toFixed(5);
-        const longitud = (centerLng + (Math.random() - 0.5) * spread).toFixed(5);
+        const isRural = (est.telefono && est.telefono.includes('Rural'));
+        
+        let latOffset, lngOffset;
+        if (isRural) {
+            // Rural: cualquier lado lejos del centro
+            latOffset = (Math.random() - 0.5) * 0.3;
+            lngOffset = (Math.random() - 0.5) * 0.3;
+        } else {
+            // Urbano: Sesgado hacia el Este (positivo) y Sur (positivo) para evitar el agua
+            latOffset = Math.random() * 0.015;  // Hacia el Sur
+            lngOffset = Math.random() * 0.02;   // Hacia el Este
+        }
+
+        const latitud = (centerLat + latOffset).toFixed(5);
+        const longitud = (centerLng + lngOffset).toFixed(5);
         
         return { 
             ...est, 
