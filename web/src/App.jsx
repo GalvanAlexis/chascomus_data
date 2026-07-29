@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './index.css';
 import { createClient } from '@supabase/supabase-js'
-import { Home, Map, Users, MapPin, Globe, Landmark, Shield, Activity, GraduationCap } from 'lucide-react';
+import { Home, Map, Users, MapPin, Globe, Landmark, Shield, Activity, GraduationCap, Compass } from 'lucide-react';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -159,6 +159,14 @@ function App() {
           >
             <GraduationCap size={20} />
             <span>Educación</span>
+          </div>
+
+          <div 
+            className={`nav-item ${activeTab === 'territorio' ? 'active' : ''}`}
+            onClick={() => setActiveTab('territorio')}
+          >
+            <Compass size={20} />
+            <span>Mapa del Territorio</span>
           </div>
           
           <div 
@@ -491,6 +499,34 @@ function App() {
                   ))}
                 </div>
               )}
+            </section>
+          </div>
+        )}
+
+        {/* PESTAÑA TERRITORIO (MAPA) */}
+        {activeTab === 'territorio' && (
+          <div className="tab-pane animate-stagger sequence-1">
+            <header className="page-header">
+              <h2 className="page-title">
+                <Compass size={32} color="var(--accent)" /> 
+                Mapa del Partido
+              </h2>
+              <p className="page-subtitle">Extensión territorial de Chascomús. Próximamente: mapa interactivo con filtros.</p>
+            </header>
+
+            <section className="glass-panel" style={{ padding: '20px' }}>
+              <div style={{ width: '100%', height: '600px', borderRadius: '12px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.1)' }}>
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d418652.7932608486!2d-58.33718045610816!3d-35.698305886367375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x959b95610cf9cc17%3A0x6ec0c5a083fbb224!2sChascom%C3%BAs%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1714500000000!5m2!1ses-419!2sar" 
+                  width="100%" 
+                  height="100%" 
+                  style={{ border: 0 }} 
+                  allowFullScreen="" 
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Mapa del Partido de Chascomús"
+                ></iframe>
+              </div>
             </section>
           </div>
         )}
