@@ -163,6 +163,24 @@ function App() {
                   <div className="widget-value">{loading ? "..." : (demografia?.superficie || "Sin datos")}</div>
                 </div>
 
+                <div className="widget">
+                  <div className="widget-icon">🏫</div>
+                  <div className="widget-label">Establecimientos Educativos</div>
+                  <div className="widget-value" style={{ color: '#60a5fa' }}>{loading ? "..." : (demografia?.escuelas_total || "0")}</div>
+                </div>
+
+                <div className="widget">
+                  <div className="widget-icon">🏥</div>
+                  <div className="widget-label">Centros de Salud Pública</div>
+                  <div className="widget-value" style={{ color: '#f87171' }}>{loading ? "..." : (demografia?.hospitales_total || "0")}</div>
+                </div>
+
+                <div className="widget">
+                  <div className="widget-icon">🚓</div>
+                  <div className="widget-label">Dependencias de Seguridad</div>
+                  <div className="widget-value" style={{ color: '#fbbf24' }}>{loading ? "..." : (demografia?.comisarias_total || "0")}</div>
+                </div>
+
                 <div className="widget" style={{ gridColumn: '1 / -1' }}>
                   <div className="widget-icon">⚖️</div>
                   <div className="widget-label">Autoridades y Poderes del Estado Local</div>
