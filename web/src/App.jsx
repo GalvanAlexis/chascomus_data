@@ -219,7 +219,7 @@ function App() {
                 <Landmark size={32} color="var(--accent)" /> 
                 Transparencia de Estado
               </h2>
-              <p className="page-subtitle">Nómina oficial de funcionarios a cargo de los tres poderes de gobierno.</p>
+              <p className="page-subtitle">Nómina oficial de funcionarios a cargo de los tres poderes de gobierno (Mandato 2023-2027).</p>
             </header>
 
             <section className="glass-panel" style={{ padding: '30px' }}>
@@ -415,7 +415,8 @@ function App() {
 
         {/* Footer Global Dinámico: Fuentes de Datos */}
         <footer className="app-footer">
-          <p>Observatorio de Datos Abiertos de Chascomús — Construido para la transparencia ciudadana.</p>
+          <p style={{ fontWeight: 'bold', color: '#fff', marginBottom: '8px' }}>Observatorio de Datos Abiertos de Chascomús</p>
+          <p style={{ fontSize: '0.8rem', marginBottom: '15px' }}>Última actualización del sistema: <strong>Julio 2026</strong></p>
           <div className="source-badges">
             
             {/* Fuentes para Demografía y Resumen */}
