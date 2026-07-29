@@ -226,7 +226,7 @@ function App() {
               
               {/* Solapas (Tabs internas) */}
               <div style={{ display: 'flex', borderBottom: '1px solid rgba(255,255,255,0.1)', marginBottom: '30px' }}>
-                {['Ejecutivo', 'Legislativo', 'Judicial'].map(poder => (
+                {['Ejecutivo', 'Legislativo', 'Judicial', 'Consejo Escolar'].map(poder => (
                   <button 
                     key={poder}
                     onClick={() => setActiveEstadoTab(poder)}

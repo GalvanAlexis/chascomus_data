@@ -47,7 +47,15 @@ const autoridadesData = [
     { poder: "Judicial", cargo: "Secretaria de Paz Letrado", nombre: "Dra. Silvina Etcheverry", bloque_partido: "Poder Judicial PBA" },
     { poder: "Judicial", cargo: "Agente Fiscal (UFID N° 9)", nombre: "Dra. Daniela Bertoletti", bloque_partido: "Ministerio Público PBA" },
     { poder: "Judicial", cargo: "Agente Fiscal (UFID N° 10)", nombre: "Dr. Jonatan Robert", bloque_partido: "Ministerio Público PBA" },
-    { poder: "Judicial", cargo: "Defensor Oficial Civil", nombre: "Dr. Gustavo Lertora", bloque_partido: "Ministerio Público PBA" }
+    { poder: "Judicial", cargo: "Defensor Oficial Civil", nombre: "Dr. Gustavo Lertora", bloque_partido: "Ministerio Público PBA" },
+
+    // CONSEJO ESCOLAR (Educación - Órgano Autónomo)
+    { poder: "Consejo Escolar", cargo: "Presidenta del Consejo", nombre: "María Victoria Figueroa", bloque_partido: "Unión por la Patria" },
+    { poder: "Consejo Escolar", cargo: "Vicepresidente", nombre: "Juan Ignacio Gorriz", bloque_partido: "Unión por la Patria" },
+    { poder: "Consejo Escolar", cargo: "Tesorero", nombre: "Nicolás Centenaro", bloque_partido: "Juntos por el Cambio" },
+    { poder: "Consejo Escolar", cargo: "Secretaria", nombre: "Luciana Díaz", bloque_partido: "Unión por la Patria" },
+    { poder: "Consejo Escolar", cargo: "Vocal (S.A.E.)", nombre: "Eduardo Claverie", bloque_partido: "Juntos por el Cambio" },
+    { poder: "Consejo Escolar", cargo: "Vocal (Infraestructura)", nombre: "Florencia Otero", bloque_partido: "Unión por la Patria" }
 ];
 
 async function scraperAutoridades() {
