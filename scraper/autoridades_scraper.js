@@ -40,9 +40,14 @@ const autoridadesData = [
     { poder: "Legislativo", cargo: "Concejal", nombre: "Santiago Arias", bloque_partido: "La Libertad Avanza" },
     { poder: "Legislativo", cargo: "Concejal", nombre: "Martín M. Rossi", bloque_partido: "Partido Vecinalista" },
     
-    // PODER JUDICIAL (Local / Faltas)
-    { poder: "Judicial", cargo: "Juez de Faltas", nombre: "Dr. Julio Giribaldi", bloque_partido: "Independiente" },
-    { poder: "Judicial", cargo: "Juez de Paz Letrado", nombre: "Dr. Hernán de Estrada", bloque_partido: "Poder Judicial PBA" }
+    // PODER JUDICIAL (Local / Descentralizado PBA)
+    { poder: "Judicial", cargo: "Juez de Faltas Municipal", nombre: "Dr. Julio Giribaldi", bloque_partido: "Justicia Municipal" },
+    { poder: "Judicial", cargo: "Secretario de Faltas", nombre: "Dr. Marcos Bazzan", bloque_partido: "Justicia Municipal" },
+    { poder: "Judicial", cargo: "Juez de Paz Letrado", nombre: "Dr. Hernán de Estrada", bloque_partido: "Poder Judicial PBA" },
+    { poder: "Judicial", cargo: "Secretaria de Paz Letrado", nombre: "Dra. Silvina Etcheverry", bloque_partido: "Poder Judicial PBA" },
+    { poder: "Judicial", cargo: "Agente Fiscal (UFID N° 9)", nombre: "Dra. Daniela Bertoletti", bloque_partido: "Ministerio Público PBA" },
+    { poder: "Judicial", cargo: "Agente Fiscal (UFID N° 10)", nombre: "Dr. Jonatan Robert", bloque_partido: "Ministerio Público PBA" },
+    { poder: "Judicial", cargo: "Defensor Oficial Civil", nombre: "Dr. Gustavo Lertora", bloque_partido: "Ministerio Público PBA" }
 ];
 
 async function scraperAutoridades() {
