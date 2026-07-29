@@ -282,43 +282,100 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Mobile Header (Hidden on Desktop) */
+.mobile-header {
+  display: none;
+}
+
+/* Font Controls */
+.font-controls {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+.font-controls button {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--text-main);
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.font-controls button:hover {
+  background: rgba(56, 189, 248, 0.2);
+  color: var(--accent);
+}
+
 /* Mobile Responsive */
 @media (max-width: 768px) {
   .dashboard-layout {
-    flex-direction: column-reverse;
+    flex-direction: column;
+  }
+  
+  .mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: #0f172a; /* Fondo sólido oscuro */
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    z-index: 40;
+  }
+  
+  .mobile-brand h1 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #fff; /* Título sólido sin gradientes */
+    margin: 0;
   }
   
   .sidebar {
-    width: 100%;
-    height: 80px;
-    flex-direction: row;
-    padding: 0 15px;
-    border-right: none;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    align-items: center;
-    justify-content: space-around;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 280px;
+    background: #1e293b; /* Fondo sólido ligero sin blur */
+    transform: translateX(-100%);
+    transition: transform 0.25s ease-out; /* Transición más rápida y ligera */
+    z-index: 60;
   }
   
-  .sidebar-brand {
-    display: none;
+  .sidebar.open {
+    transform: translateX(0);
   }
-  
-  .nav-menu {
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-around;
+
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.6); /* Sombra sólida sin filtros */
+    z-index: 55;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease-out;
   }
-  
-  .nav-item {
-    flex-direction: column;
-    gap: 5px;
-    padding: 10px;
-    font-size: 0.75rem;
+
+  .sidebar-overlay.open {
+    opacity: 1;
+    pointer-events: all;
   }
   
   .main-content {
     padding: 20px;
     padding-bottom: 30px;
+    overflow-y: auto;
+    flex: 1;
   }
   
   .pyramid-chart {
