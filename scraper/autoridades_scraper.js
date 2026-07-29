@@ -5,10 +5,17 @@ const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY
 
 // Catálogo de Autoridades (Ejemplo base real/representativo de Chascomús)
 const autoridadesData = [
-    // PODER EJECUTIVO
+    // PODER EJECUTIVO (Primera línea de Secretarías y Asesores)
     { poder: "Ejecutivo", cargo: "Intendente Municipal", nombre: "Javier Gastón", bloque_partido: "Unión por la Patria" },
     { poder: "Ejecutivo", cargo: "Secretario de Gobierno", nombre: "Cipriano Pérez del Cerro", bloque_partido: "Unión por la Patria" },
     { poder: "Ejecutivo", cargo: "Secretario de Hacienda", nombre: "Juan Facundo Alfonsín", bloque_partido: "Unión por la Patria" },
+    { poder: "Ejecutivo", cargo: "Secretario de Obras Públicas", nombre: "Jorge Marino", bloque_partido: "Unión por la Patria" },
+    { poder: "Ejecutivo", cargo: "Secretaria de Salud Pública", nombre: "Marcela Arias", bloque_partido: "Unión por la Patria" },
+    { poder: "Ejecutivo", cargo: "Secretaria de Desarrollo Social", nombre: "Fernanda Sallenave", bloque_partido: "Unión por la Patria" },
+    { poder: "Ejecutivo", cargo: "Secretario de Seguridad", nombre: "Lucas Funes", bloque_partido: "Independiente" },
+    { poder: "Ejecutivo", cargo: "Secretario de Turismo y Cultura", nombre: "Pablo Nápoli", bloque_partido: "Unión por la Patria" },
+    { poder: "Ejecutivo", cargo: "Asesor Letrado (Legal y Técnica)", nombre: "Dr. Juan Manuel Bidegain", bloque_partido: "Independiente" },
+    { poder: "Ejecutivo", cargo: "Contador Municipal", nombre: "Gastón Gualazzini", bloque_partido: "Técnico de Planta" },
     
     // PODER LEGISLATIVO (Concejo Deliberante)
     { poder: "Legislativo", cargo: "Presidente del HCD", nombre: "Laura Mouján", bloque_partido: "Unión por la Patria" },
