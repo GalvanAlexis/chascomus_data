@@ -413,13 +413,29 @@ function App() {
           </div>
         )}
 
-        {/* Footer Global: Fuentes de Datos */}
+        {/* Footer Global Dinámico: Fuentes de Datos */}
         <footer className="app-footer">
           <p>Observatorio de Datos Abiertos de Chascomús — Construido para la transparencia ciudadana.</p>
           <div className="source-badges">
-            <span className="source-badge">Fuente: INDEC (Censo 2022)</span>
-            <span className="source-badge">Fuente: Dir. Prov. de Estadística (DPE)</span>
-            <span className="source-badge">Fuente: RENABAP</span>
+            
+            {/* Fuentes para Demografía y Resumen */}
+            {(activeTab === 'inicio' || activeTab === 'barrios') && (
+              <>
+                <span className="source-badge">Fuente: INDEC (Censo 2022)</span>
+                <span className="source-badge">Fuente: Dir. Prov. de Estadística (DPE)</span>
+                <span className="source-badge">Fuente: RENABAP</span>
+              </>
+            )}
+
+            {/* Fuentes para Transparencia del Estado */}
+            {activeTab === 'estado' && (
+              <>
+                <span className="source-badge">Fuente: Municipalidad de Chascomús</span>
+                <span className="source-badge">Fuente: Honorable Concejo Deliberante (HCD)</span>
+                <span className="source-badge">Fuente: Poder Judicial PBA</span>
+              </>
+            )}
+
           </div>
         </footer>
 
