@@ -11,7 +11,7 @@ async function updateInfra() {
         .from('demografia')
         .update({
             escuelas_total: 62,       // Jardines, primarias, secundarias
-            hospitales_total: 8,      // Municipal + Clínica + CAPS
+            hospitales_total: 7,      // Hospital Municipal + 6 CAPS
             comisarias_total: 9       // Comisaría 1, Mujer, DDI, Rural, Departamental, GAD, Vial, Federal, Monitoreo
         })
         .neq('id', 0); // Hack para actualizar todas las filas (que es 1)

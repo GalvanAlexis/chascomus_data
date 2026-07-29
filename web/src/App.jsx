@@ -92,7 +92,7 @@ function App() {
         const { data: estabData } = await supabase
           .from('establecimientos')
           .select('*')
-          .order('nombre', { ascending: true });
+          .order('id', { ascending: true });
         
         if (estabData) setEstablecimientos(estabData);
 
