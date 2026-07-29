@@ -321,13 +321,37 @@ body {
     padding-bottom: 30px;
   }
   
+  .pyramid-chart {
+    padding: 15px 5px;
+  }
+
   .pyramid-row {
-    flex-direction: column;
-    margin-bottom: 25px;
+    flex-direction: row; /* Mantener la forma de pirámide en móviles */
+    margin-bottom: 10px;
   }
   
   .age-label {
-    margin: 5px 0;
+    width: 50px;
+    font-size: 0.65rem;
+    margin: 0;
+  }
+
+  .bar-container {
+    height: 18px;
+  }
+
+  .bar-text {
+    font-size: 0.6rem;
+    padding: 0 4px;
+  }
+
+  .pyramid-header {
+    font-size: 0.7rem;
+    margin-bottom: 10px;
+  }
+  
+  .age-label-header {
+    width: 50px;
   }
 }
 
