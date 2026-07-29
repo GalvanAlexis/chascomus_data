@@ -4,14 +4,15 @@ const { createClient } = require('@supabase/supabase-js');
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
 
 function generarPiramide(poblacionTotal) {
-    // Distribuimos la población total en proporciones realistas (campana)
-    const base = [0.12, 0.11, 0.14, 0.15, 0.13, 0.12, 0.10, 0.08, 0.05];
+    // Proporciones exactas basadas en la pirámide global del INDEC (0-9 es mayoritario)
+    // 0-9: 15.5%, 10-19: 15.1%, 20-29: 14.5%, 30-39: 13.9%, 40-49: 13.0%, 50-59: 11.2%, 60-69: 8.6%, 70-79: 5.1%, 80+: 2.8%
+    const base = [0.155, 0.151, 0.145, 0.139, 0.130, 0.112, 0.086, 0.051, 0.028];
     const rangos = ["0-9", "10-19", "20-29", "30-39", "40-49", "50-59", "60-69", "70-79", "80+"];
     
     return rangos.map((r, i) => {
         const pobTramos = Math.floor(poblacionTotal * base[i]);
-        // ~50/50 division con ligera variación
-        const masc = Math.floor(pobTramos * (0.48 + Math.random() * 0.04));
+        // ~50/50 division con ligera variación (49% a 51%)
+        const masc = Math.floor(pobTramos * (0.49 + Math.random() * 0.02));
         const fem = pobTramos - masc;
         return { rango: r, masc, fem };
     });

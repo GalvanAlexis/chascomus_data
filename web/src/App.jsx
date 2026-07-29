@@ -278,6 +278,16 @@ function App() {
           </div>
         )}
 
+        {/* Footer Global: Fuentes de Datos */}
+        <footer className="app-footer">
+          <p>Observatorio de Datos Abiertos de Chascomús — Construido para la transparencia ciudadana.</p>
+          <div className="source-badges">
+            <span className="source-badge">Fuente: INDEC (Censo 2022)</span>
+            <span className="source-badge">Fuente: Dir. Prov. de Estadística (DPE)</span>
+            <span className="source-badge">Fuente: RENABAP</span>
+          </div>
+        </footer>
+
       </main>
     </div>
   );

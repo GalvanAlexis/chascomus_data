@@ -330,3 +330,34 @@ body {
     margin: 5px 0;
   }
 }
+
+/* Footer / Data Sources */
+.app-footer {
+  margin-top: 50px;
+  padding: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.app-footer p {
+  margin-bottom: 5px;
+}
+
+.source-badges {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.source-badge {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
