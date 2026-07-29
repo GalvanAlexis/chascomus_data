@@ -63,13 +63,35 @@ const establecimientosData = [
     { tipo: "Educacion", subtipo: "Primaria", nombre: "Escuela 'Nuestra Señora de Luján'", direccion: "Scalabrini Ortiz 137", telefono: "Privada" },
     { tipo: "Educacion", subtipo: "Primaria", nombre: "Escuela 'Las Luciérnagas'", direccion: "Alternativa pedagógica (Periurbana)", telefono: "Privada" },
 
-    // EDUCACIÓN - SECUNDARIAS
-    { tipo: "Educacion", subtipo: "Secundaria", nombre: "Escuela Técnica N° 1 (E.E.S.T N°1)", direccion: "Mackay y Casalins", telefono: "Pública (Provincial)" },
-    { tipo: "Educacion", subtipo: "Secundaria", nombre: "Escuela Normal Superior (Secundaria)", direccion: "Av. Lastra y Av. Perón", telefono: "Pública (Provincial)" },
-    { tipo: "Educacion", subtipo: "Secundaria", nombre: "Instituto Corazón de María (Secundaria)", direccion: "Soler 14", telefono: "Privada" },
+    // EDUCACIÓN - SECUNDARIAS URBANAS (Provinciales)
+    { tipo: "Educacion", subtipo: "Secundaria", nombre: "EES N° 1 'Media 1'", direccion: "Washington 72", telefono: "Pública (Provincial)" },
+    { tipo: "Educacion", subtipo: "Secundaria", nombre: "EES N° 2", direccion: "Julián Quintana 1167", telefono: "Pública (Provincial)" },
+    { tipo: "Educacion", subtipo: "Secundaria", nombre: "EES N° 3", direccion: "Planta urbana", telefono: "Pública (Provincial)" },
+    { tipo: "Educacion", subtipo: "Secundaria", nombre: "EES N° 4", direccion: "Educación secundaria obligatoria", telefono: "Pública (Provincial)" },
+    { tipo: "Educacion", subtipo: "Secundaria", nombre: "EES N° 5", direccion: "Educación secundaria común", telefono: "Pública (Provincial)" },
+    { tipo: "Educacion", subtipo: "Secundaria", nombre: "EES N° 6", direccion: "Cobertura técnica o común", telefono: "Pública (Provincial)" },
+    { tipo: "Educacion", subtipo: "Secundaria", nombre: "Escuela Normal Superior 'Prof. Manuel Almada' (Nivel Secundario)", direccion: "Av. Lastra y Av. Perón", telefono: "Pública (Provincial)" },
+
+    // EDUCACIÓN - SECUNDARIAS TÉCNICAS Y AGRARIAS
+    { tipo: "Educacion", subtipo: "Secundaria", nombre: "EEST N° 1 'Thereza de los Ángeles' (Técnica)", direccion: "Mackay y Casalins", telefono: "Pública (Técnica)" },
+    { tipo: "Educacion", subtipo: "Secundaria", nombre: "EESA N° 1 'ARA Crucero Belgrano' (Agraria)", direccion: "Ruta 20, Km 81,5", telefono: "Pública (Agraria)" },
+    { tipo: "Educacion", subtipo: "Secundaria", nombre: "EESA N° 1 (Anexo 41)", direccion: "Cuartel VIII, Paraje Libres del Sur", telefono: "Pública (Agraria Rural)" },
+
+    // EDUCACIÓN - SECUNDARIAS RURALES
+    { tipo: "Educacion", subtipo: "Secundaria", nombre: "EES N° 7 (Extensión 2070)", direccion: "Cuartel X, Paraje Manantiales", telefono: "Pública (Rural)" },
+    { tipo: "Educacion", subtipo: "Secundaria", nombre: "EES N° 8 (Extensión 2080)", direccion: "Cuartel VIII, Comandante Giribone", telefono: "Pública (Rural)" },
+
+    // EDUCACIÓN - SECUNDARIA MUNICIPAL
+    { tipo: "Educacion", subtipo: "Secundaria", nombre: "Escuela Secundaria Municipal de Chascomús", direccion: "Dependiente del municipio", telefono: "Pública (Municipal)" },
+
+    // EDUCACIÓN - SECUNDARIAS PRIVADAS
+    { tipo: "Educacion", subtipo: "Secundaria", nombre: "Instituto Corazón de María (ICM)", direccion: "Soler 14", telefono: "Privada" },
+    { tipo: "Educacion", subtipo: "Secundaria", nombre: "Colegio del Divino Corazón", direccion: "Alsina 33", telefono: "Privada" },
+    { tipo: "Educacion", subtipo: "Secundaria", nombre: "Escuela 'Nuestra Señora de Luján'", direccion: "Scalabrini Ortiz 137", telefono: "Privada" },
     
     // EDUCACIÓN - TERCIARIA / ADULTOS
-    { tipo: "Educacion", subtipo: "Terciaria/Adultos", nombre: "Escuela Primaria de Adultos N° 701", direccion: "Bahía Blanca 118", telefono: "Pública (Nocturna)" },
+    { tipo: "Educacion", subtipo: "Terciaria/Adultos", nombre: "CENS N° 451 (Secundario Nocturno)", direccion: "Washington 72", telefono: "Pública (Adultos)" },
+    { tipo: "Educacion", subtipo: "Terciaria/Adultos", nombre: "Escuela Primaria de Adultos N° 701", direccion: "Bahía Blanca 118", telefono: "Pública (Adultos)" },
     { tipo: "Educacion", subtipo: "Terciaria/Adultos", nombre: "Conservatorio de Música", direccion: "Sarmiento y Lavalle", telefono: "Pública (Arte)" },
     { tipo: "Educacion", subtipo: "Terciaria/Adultos", nombre: "Instituto Superior de Formación Docente N° 98", direccion: "Av. Lastra y Av. Perón", telefono: "Pública (Terciaria)" },
     { tipo: "Educacion", subtipo: "Terciaria/Adultos", nombre: "INTECH (UNSAM - CONICET)", direccion: "Camino de Circunvalación", telefono: "Universidad / Investigación" },
