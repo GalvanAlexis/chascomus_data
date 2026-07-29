@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './index.css';
 import { createClient } from '@supabase/supabase-js'
-import { Home, Map, Users, MapPin, Globe, Landmark, Shield, Activity } from 'lucide-react';
+import { Home, Map, Users, MapPin, Globe, Landmark, Shield, Activity, GraduationCap } from 'lucide-react';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -10,6 +10,7 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey);
 function App() {
   const [activeTab, setActiveTab] = useState('inicio');
   const [activeEstadoTab, setActiveEstadoTab] = useState('Ejecutivo');
+  const [activeEducacionTab, setActiveEducacionTab] = useState('Primaria');
   const [demografia, setDemografia] = useState(null);
   
   // Lista unificada para el selector (Total + Barrios)
@@ -150,6 +151,14 @@ function App() {
           >
             <Activity size={20} />
             <span>Salud Pública</span>
+          </div>
+          
+          <div 
+            className={`nav-item ${activeTab === 'educacion' ? 'active' : ''}`}
+            onClick={() => setActiveTab('educacion')}
+          >
+            <GraduationCap size={20} />
+            <span>Educación</span>
           </div>
           
           <div 
@@ -403,6 +412,79 @@ function App() {
                       {est.telefono && (
                         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--accent)', fontSize: '0.9rem', fontWeight: 'bold' }}>
                           <span>📞 {est.telefono}</span>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </section>
+          </div>
+        )}
+
+        {/* PESTAÑA EDUCACIÓN */}
+        {activeTab === 'educacion' && (
+          <div className="tab-pane">
+            <header className="page-header">
+              <h2 className="page-title">
+                <GraduationCap size={32} color="var(--accent)" /> 
+                Red Educativa
+              </h2>
+              <p className="page-subtitle">Principales jardines, escuelas primarias, secundarias y técnicas (Públicas y Privadas).</p>
+            </header>
+
+            <section className="glass-panel" style={{ padding: '30px' }}>
+              {/* Solapas de Educación */}
+              <div style={{ display: 'flex', borderBottom: '1px solid rgba(255,255,255,0.1)', marginBottom: '30px' }}>
+                {['Primaria', 'Secundaria', 'Terciaria/Adultos', 'Especial'].map(nivel => (
+                  <button 
+                    key={nivel}
+                    onClick={() => setActiveEducacionTab(nivel)}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      color: activeEducacionTab === nivel ? 'var(--accent)' : 'var(--text-muted)',
+                      padding: '10px 20px',
+                      fontSize: '1rem',
+                      fontWeight: activeEducacionTab === nivel ? 'bold' : 'normal',
+                      borderBottom: activeEducacionTab === nivel ? '2px solid var(--accent)' : '2px solid transparent',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease'
+                    }}
+                  >
+                    {nivel}
+                  </button>
+                ))}
+              </div>
+
+              {loading ? (
+                <p>Cargando establecimientos...</p>
+              ) : (
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '20px' }}>
+                  {establecimientos.filter(e => e.tipo === 'Educacion' && e.subtipo === activeEducacionTab).map(est => (
+                    <div key={est.id} style={{
+                      background: 'rgba(255,255,255,0.03)',
+                      border: '1px solid rgba(255,255,255,0.05)',
+                      borderLeft: '4px solid #60a5fa', // Azul
+                      borderRadius: '12px',
+                      padding: '20px',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '10px'
+                    }}>
+                      <div style={{ fontSize: '1.2rem', fontWeight: 'bold', color: '#fff' }}>
+                        {est.nombre}
+                      </div>
+                      
+                      {est.direccion && (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                          <MapPin size={16} /> <span>{est.direccion}</span>
+                        </div>
+                      )}
+                      
+                      {est.telefono && (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--accent)', fontSize: '0.9rem', fontWeight: 'bold' }}>
+                          <span>📚 {est.telefono}</span>
                         </div>
                       )}
                     </div>
