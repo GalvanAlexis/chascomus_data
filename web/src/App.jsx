@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './index.css';
 import { createClient } from '@supabase/supabase-js'
-import { Home, Map, Users, MapPin, Globe, Landmark, Shield } from 'lucide-react';
+import { Home, Map, Users, MapPin, Globe, Landmark, Shield, Activity } from 'lucide-react';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -142,6 +142,14 @@ function App() {
           >
             <Shield size={20} />
             <span>Seguridad Pública</span>
+          </div>
+          
+          <div 
+            className={`nav-item ${activeTab === 'salud' ? 'active' : ''}`}
+            onClick={() => setActiveTab('salud')}
+          >
+            <Activity size={20} />
+            <span>Salud Pública</span>
           </div>
           
           <div 
@@ -326,6 +334,56 @@ function App() {
                       background: 'rgba(255,255,255,0.03)',
                       border: '1px solid rgba(255,255,255,0.05)',
                       borderLeft: '4px solid #fbbf24',
+                      borderRadius: '12px',
+                      padding: '20px',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '10px'
+                    }}>
+                      <div style={{ fontSize: '1.2rem', fontWeight: 'bold', color: '#fff' }}>
+                        {est.nombre}
+                      </div>
+                      
+                      {est.direccion && (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                          <MapPin size={16} /> <span>{est.direccion}</span>
+                        </div>
+                      )}
+                      
+                      {est.telefono && (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--accent)', fontSize: '0.9rem', fontWeight: 'bold' }}>
+                          <span>📞 {est.telefono}</span>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </section>
+          </div>
+        )}
+
+        {/* PESTAÑA SALUD */}
+        {activeTab === 'salud' && (
+          <div className="tab-pane">
+            <header className="page-header">
+              <h2 className="page-title">
+                <Activity size={32} color="var(--accent)" /> 
+                Salud Pública
+              </h2>
+              <p className="page-subtitle">Mapa de establecimientos sanitarios, clínicas y centros de atención primaria.</p>
+            </header>
+
+            <section className="glass-panel" style={{ padding: '30px' }}>
+              {loading ? (
+                <p>Cargando establecimientos...</p>
+              ) : (
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '20px' }}>
+                  {establecimientos.filter(e => e.tipo === 'Salud').map(est => (
+                    <div key={est.id} style={{
+                      background: 'rgba(255,255,255,0.03)',
+                      border: '1px solid rgba(255,255,255,0.05)',
+                      borderLeft: '4px solid #f87171',
                       borderRadius: '12px',
                       padding: '20px',
                       display: 'flex',
