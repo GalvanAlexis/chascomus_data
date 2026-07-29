@@ -122,9 +122,25 @@ async function scraperEstablecimientos() {
     await supabase.from('establecimientos').delete().in('tipo', ['Seguridad', 'Salud', 'Educacion']);
 
     console.log("3. Inyectando dependencias en Supabase...");
+    
+    // Asignar coordenadas base (Chascomús centro) con dispersión para simular distribución
+    const centerLat = -35.5761;
+    const centerLng = -58.0097;
+    const dataWithCoords = establecimientosData.map(est => {
+        // Dispersión mayor para escuelas rurales
+        const spread = (est.telefono && est.telefono.includes('Rural')) ? 0.3 : 0.03;
+        const latitud = (centerLat + (Math.random() - 0.5) * spread).toFixed(5);
+        const longitud = (centerLng + (Math.random() - 0.5) * spread).toFixed(5);
+        
+        return { 
+            ...est, 
+            direccion: `${est.direccion} | ${latitud},${longitud}`
+        };
+    });
+
     const { data, error } = await supabase
         .from('establecimientos')
-        .insert(establecimientosData)
+        .insert(dataWithCoords)
         .select();
 
     if (error) {

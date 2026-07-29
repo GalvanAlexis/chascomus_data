@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import './index.css';
 import { createClient } from '@supabase/supabase-js'
 import { Home, Map, Users, MapPin, Globe, Landmark, Shield, Activity, GraduationCap, Compass } from 'lucide-react';
+import { MapContainer, TileLayer, GeoJSON, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -22,7 +25,15 @@ function App() {
   
   // Estado para Establecimientos (Seguridad, Salud, etc)
   const [establecimientos, setEstablecimientos] = useState([]);
+  const [geoJsonData, setGeoJsonData] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('/chascomus_partido.geojson')
+      .then(res => res.json())
+      .then(data => setGeoJsonData(data))
+      .catch(err => console.error('Error cargando GeoJSON:', err));
+  }, []);
 
   useEffect(() => {
     async function fetchData() {
@@ -109,6 +120,25 @@ function App() {
 
   // Filtrar autoridades según la solapa activa
   const autoridadesFiltradas = autoridades.filter(a => a.poder === activeEstadoTab);
+
+  const formatDir = (dir) => {
+    if (!dir) return '';
+    return dir.split('|')[0].trim();
+  };
+
+  // Generador de iconos personalizados para Leaflet
+  const getIcon = (tipo) => {
+    let color = '#60a5fa'; // Educacion (Azul)
+    if (tipo === 'Salud') color = '#f87171'; // Salud (Rojo)
+    if (tipo === 'Seguridad') color = '#fbbf24'; // Seguridad (Amarillo)
+    
+    return L.divIcon({
+      className: 'custom-marker',
+      html: `<div style="background-color: ${color}; width: 14px; height: 14px; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 4px rgba(0,0,0,0.5);"></div>`,
+      iconSize: [14, 14],
+      iconAnchor: [7, 7]
+    });
+  };
 
   return (
     <div className="dashboard-layout">
@@ -363,7 +393,7 @@ function App() {
                       
                       {est.direccion && (
                         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-                          <MapPin size={16} /> <span>{est.direccion}</span>
+                          <MapPin size={16} /> <span>{formatDir(est.direccion)}</span>
                         </div>
                       )}
                       
@@ -413,7 +443,7 @@ function App() {
                       
                       {est.direccion && (
                         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-                          <MapPin size={16} /> <span>{est.direccion}</span>
+                          <MapPin size={16} /> <span>{formatDir(est.direccion)}</span>
                         </div>
                       )}
                       
@@ -486,7 +516,7 @@ function App() {
                       
                       {est.direccion && (
                         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-                          <MapPin size={16} /> <span>{est.direccion}</span>
+                          <MapPin size={16} /> <span>{formatDir(est.direccion)}</span>
                         </div>
                       )}
                       
@@ -516,16 +546,37 @@ function App() {
 
             <section className="glass-panel" style={{ padding: '20px' }}>
               <div style={{ width: '100%', height: '600px', borderRadius: '12px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.1)' }}>
-                <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d418652.7932608486!2d-58.33718045610816!3d-35.698305886367375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x959b95610cf9cc17%3A0x6ec0c5a083fbb224!2sChascom%C3%BAs%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1714500000000!5m2!1ses-419!2sar" 
-                  width="100%" 
-                  height="100%" 
-                  style={{ border: 0 }} 
-                  allowFullScreen="" 
-                  loading="lazy" 
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Mapa del Partido de Chascomús"
-                ></iframe>
+                <MapContainer center={[-35.6, -58.0]} zoom={10} style={{ height: '100%', width: '100%', zIndex: 1 }}>
+                  <TileLayer
+                    attribution='&copy; <a href="https://carto.com/">CARTO</a>'
+                    url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+                  />
+                  {geoJsonData && (
+                    <GeoJSON 
+                      data={geoJsonData} 
+                      style={{ color: '#38bdf8', weight: 2, opacity: 0.8, fillOpacity: 0.05 }}
+                    />
+                  )}
+                  {establecimientos.map(est => {
+                    const parts = (est.direccion || '').split('|');
+                    const realDir = parts[0].trim();
+                    const coords = parts[1] ? parts[1].trim().split(',') : null;
+                    if (coords && coords.length === 2) {
+                      return (
+                        <Marker key={est.id} position={[parseFloat(coords[0]), parseFloat(coords[1])]} icon={getIcon(est.tipo)}>
+                          <Popup>
+                            <div style={{color: '#333'}}>
+                              <strong style={{fontSize: '1.1rem'}}>{est.nombre}</strong><br/>
+                              {realDir}<br/>
+                              <span style={{color: '#666', fontSize: '0.85rem'}}>{est.tipo}</span>
+                            </div>
+                          </Popup>
+                        </Marker>
+                      );
+                    }
+                    return null;
+                  })}
+                </MapContainer>
               </div>
             </section>
           </div>
