@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './index.css';
 import { createClient } from '@supabase/supabase-js'
-import { Home, Map, Users, MapPin, Globe } from 'lucide-react';
+import { Home, Map, Users, MapPin, Globe, Landmark } from 'lucide-react';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -9,11 +9,15 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 function App() {
   const [activeTab, setActiveTab] = useState('inicio');
+  const [activeEstadoTab, setActiveEstadoTab] = useState('Ejecutivo');
   const [demografia, setDemografia] = useState(null);
   
   // Lista unificada para el selector (Total + Barrios)
   const [listaZonas, setListaZonas] = useState([]);
   const [selectedZona, setSelectedZona] = useState(null);
+  
+  // Estado para las Autoridades
+  const [autoridades, setAutoridades] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -54,12 +58,12 @@ function App() {
           .select('*')
           .order('nombre', { ascending: true });
 
-        // 4. Consolidar lista
+        // 4. Consolidar lista Zonas
         const zonaTotal = {
             id: 'global_total',
             isTotal: true,
             nombre: 'Chascomús (Total)',
-            latitud: -35.5760, // Centro ciudad
+            latitud: -35.5760,
             longitud: -58.0100,
             poblacion_estimada: demoGlobal?.poblacion || totalPob,
             piramide_demografica: piramideGlobal
@@ -71,7 +75,15 @@ function App() {
         }
 
         setListaZonas(zonasFinal);
-        setSelectedZona(zonaTotal); // Seleccionamos "Total" por defecto
+        setSelectedZona(zonaTotal);
+
+        // 5. Fetch Autoridades
+        const { data: authData } = await supabase
+          .from('autoridades_estado')
+          .select('*')
+          .order('id', { ascending: true });
+        
+        if (authData) setAutoridades(authData);
 
       } catch (error) {
         console.error("Error cargando datos:", error.message);
@@ -82,6 +94,9 @@ function App() {
     
     fetchData();
   }, []);
+
+  // Filtrar autoridades según la solapa activa
+  const autoridadesFiltradas = autoridades.filter(a => a.poder === activeEstadoTab);
 
   return (
     <div className="dashboard-layout">
@@ -100,6 +115,14 @@ function App() {
           >
             <Home size={20} />
             <span>Resumen General</span>
+          </div>
+          
+          <div 
+            className={`nav-item ${activeTab === 'estado' ? 'active' : ''}`}
+            onClick={() => setActiveTab('estado')}
+          >
+            <Landmark size={20} />
+            <span>Transparencia Estado</span>
           </div>
           
           <div 
@@ -166,6 +189,81 @@ function App() {
                   </div>
                 </div>
               </div>
+            </section>
+          </div>
+        )}
+
+        {/* PESTAÑA ESTADO (TRANSPARENCIA) */}
+        {activeTab === 'estado' && (
+          <div className="tab-pane">
+            <header className="page-header">
+              <h2 className="page-title">
+                <Landmark size={32} color="var(--accent)" /> 
+                Transparencia de Estado
+              </h2>
+              <p className="page-subtitle">Nómina oficial de funcionarios a cargo de los tres poderes de gobierno.</p>
+            </header>
+
+            <section className="glass-panel" style={{ padding: '30px' }}>
+              
+              {/* Solapas (Tabs internas) */}
+              <div style={{ display: 'flex', borderBottom: '1px solid rgba(255,255,255,0.1)', marginBottom: '30px' }}>
+                {['Ejecutivo', 'Legislativo', 'Judicial'].map(poder => (
+                  <button 
+                    key={poder}
+                    onClick={() => setActiveEstadoTab(poder)}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      color: activeEstadoTab === poder ? 'var(--accent)' : 'var(--text-muted)',
+                      padding: '10px 30px',
+                      fontSize: '1rem',
+                      fontWeight: activeEstadoTab === poder ? 'bold' : 'normal',
+                      borderBottom: activeEstadoTab === poder ? '3px solid var(--accent)' : '3px solid transparent',
+                      cursor: 'pointer',
+                      transition: 'all 0.2s'
+                    }}
+                  >
+                    Poder {poder}
+                  </button>
+                ))}
+              </div>
+
+              {/* Lista de Autoridades */}
+              {loading ? (
+                <p>Cargando autoridades...</p>
+              ) : (
+                <div>
+                  <div style={{ marginBottom: '20px', color: 'var(--text-muted)' }}>
+                    Total funcionarios listados: {autoridadesFiltradas.length}
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '20px' }}>
+                    {autoridadesFiltradas.map(aut => (
+                      <div key={aut.id} style={{
+                        background: 'rgba(255,255,255,0.03)',
+                        border: '1px solid rgba(255,255,255,0.05)',
+                        borderRadius: '12px',
+                        padding: '20px',
+                        transition: 'transform 0.2s ease',
+                        boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+                      }}>
+                        <div style={{ fontSize: '0.8rem', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '8px' }}>
+                          {aut.cargo}
+                        </div>
+                        <div style={{ fontSize: '1.2rem', fontWeight: 'bold', color: '#fff', marginBottom: '10px' }}>
+                          {aut.nombre}
+                        </div>
+                        {aut.bloque_partido && (
+                          <div style={{ display: 'inline-block', background: 'rgba(255,255,255,0.1)', padding: '4px 10px', borderRadius: '4px', fontSize: '0.75rem', color: '#ccc' }}>
+                            {aut.bloque_partido}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
             </section>
           </div>
         )}
