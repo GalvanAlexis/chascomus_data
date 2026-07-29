@@ -89,14 +89,27 @@ const establecimientosData = [
     { tipo: "Educacion", subtipo: "Secundaria", nombre: "Colegio del Divino Corazón", direccion: "Alsina 33", telefono: "Privada" },
     { tipo: "Educacion", subtipo: "Secundaria", nombre: "Escuela 'Nuestra Señora de Luján'", direccion: "Scalabrini Ortiz 137", telefono: "Privada" },
     
-    // EDUCACIÓN - TERCIARIA / ADULTOS
-    { tipo: "Educacion", subtipo: "Terciaria/Adultos", nombre: "CENS N° 451 (Secundario Nocturno)", direccion: "Washington 72", telefono: "Pública (Adultos)" },
-    { tipo: "Educacion", subtipo: "Terciaria/Adultos", nombre: "Escuela Primaria de Adultos N° 701", direccion: "Bahía Blanca 118", telefono: "Pública (Adultos)" },
-    { tipo: "Educacion", subtipo: "Terciaria/Adultos", nombre: "Conservatorio de Música", direccion: "Sarmiento y Lavalle", telefono: "Pública (Arte)" },
-    { tipo: "Educacion", subtipo: "Terciaria/Adultos", nombre: "Instituto Superior de Formación Docente N° 98", direccion: "Av. Lastra y Av. Perón", telefono: "Pública (Terciaria)" },
+    // EDUCACIÓN - UNIVERSITARIA
+    { tipo: "Educacion", subtipo: "Terciaria/Adultos", nombre: "Centro Universitario Chascomús (CUCH - UNQ/UNAJ)", direccion: "Dependiente del municipio", telefono: "Pública (Universitaria)" },
     { tipo: "Educacion", subtipo: "Terciaria/Adultos", nombre: "INTECH (UNSAM - CONICET)", direccion: "Camino de Circunvalación", telefono: "Universidad / Investigación" },
 
-    // EDUCACIÓN - ESPECIAL / ARTE
+    // EDUCACIÓN - TERCIARIA (Institutos Superiores)
+    { tipo: "Educacion", subtipo: "Terciaria/Adultos", nombre: "ISFDyT N° 57 'Juana Paula Manso'", direccion: "Franklin 166", telefono: "Pública (Terciaria)" },
+    { tipo: "Educacion", subtipo: "Terciaria/Adultos", nombre: "ISFD N° 98 (Escuela Normal Superior)", direccion: "Av. Lastra y Av. Perón", telefono: "Pública (Terciaria)" },
+
+    // EDUCACIÓN - CENTROS DE FORMACIÓN LABORAL
+    { tipo: "Educacion", subtipo: "Terciaria/Adultos", nombre: "Centro de Formación Laboral (CFL) N° 401", direccion: "Turno vespertino", telefono: "Pública (Oficios)" },
+    { tipo: "Educacion", subtipo: "Terciaria/Adultos", nombre: "Centro de Formación Laboral (CFL) N° 402", direccion: "Convenio con UPCN", telefono: "Pública (Oficios)" },
+
+    // EDUCACIÓN - ADULTOS (Primaria y Secundaria)
+    { tipo: "Educacion", subtipo: "Terciaria/Adultos", nombre: "EEPA N° 701 (Primaria de Adultos)", direccion: "Bahía Blanca 118", telefono: "Pública (Adultos)" },
+    { tipo: "Educacion", subtipo: "Terciaria/Adultos", nombre: "CENS N° 451 (Secundaria de Adultos)", direccion: "Washington 72", telefono: "Pública (Adultos)" },
+    { tipo: "Educacion", subtipo: "Terciaria/Adultos", nombre: "Plan FinEs (Finalización de Estudios)", direccion: "Sedes barriales descentralizadas", telefono: "Pública (Adultos)" },
+    
+    // EDUCACIÓN - ARTE
+    { tipo: "Educacion", subtipo: "Terciaria/Adultos", nombre: "Conservatorio de Música", direccion: "Sarmiento y Lavalle", telefono: "Pública (Arte)" },
+
+    // EDUCACIÓN - ESPECIAL
     { tipo: "Educacion", subtipo: "Especial", nombre: "Orquesta Escuela de Chascomús", direccion: "Fernando de Arenaza N° 150", telefono: "Pública (Arte/Municipal)" },
     { tipo: "Educacion", subtipo: "Especial", nombre: "Escuela de Educación Especial N° 504", direccion: "Rivadavia N° 25", telefono: "Pública (Especial)" }
 ];
