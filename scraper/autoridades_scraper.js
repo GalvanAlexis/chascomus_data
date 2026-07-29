@@ -17,17 +17,28 @@ const autoridadesData = [
     { poder: "Ejecutivo", cargo: "Asesor Letrado (Legal y Técnica)", nombre: "Dr. Juan Manuel Bidegain", bloque_partido: "Independiente" },
     { poder: "Ejecutivo", cargo: "Contador Municipal", nombre: "Gastón Gualazzini", bloque_partido: "Técnico de Planta" },
     
-    // PODER LEGISLATIVO (Concejo Deliberante)
+    // PODER LEGISLATIVO (Honorable Concejo Deliberante - 17 Miembros)
     { poder: "Legislativo", cargo: "Presidente del HCD", nombre: "Laura Mouján", bloque_partido: "Unión por la Patria" },
-    { poder: "Legislativo", cargo: "Concejal", nombre: "Ramiro Ferrante", bloque_partido: "Juntos por el Cambio" },
+    { poder: "Legislativo", cargo: "Secretario Legislativo", nombre: "Gastón Gualazzini", bloque_partido: "Técnico HCD" },
+    // Bloque Juntos por el Cambio / UCR
+    { poder: "Legislativo", cargo: "Concejal (Pte. Bloque)", nombre: "Ramiro Ferrante", bloque_partido: "Juntos por el Cambio" },
     { poder: "Legislativo", cargo: "Concejal", nombre: "Lorena Escaray", bloque_partido: "Juntos por el Cambio" },
     { poder: "Legislativo", cargo: "Concejal", nombre: "Mariela Alfonsín", bloque_partido: "UCR - JxC" },
     { poder: "Legislativo", cargo: "Concejal", nombre: "Augusto Villa", bloque_partido: "Juntos por el Cambio" },
     { poder: "Legislativo", cargo: "Concejal", nombre: "Andrés Sanucci", bloque_partido: "Juntos por el Cambio" },
-    { poder: "Legislativo", cargo: "Concejal", nombre: "Julieta Spina", bloque_partido: "Unión por la Patria" },
-    { poder: "Legislativo", cargo: "Concejal", nombre: "Marcelo Teileche", bloque_partido: "Unión por la Patria" },
     { poder: "Legislativo", cargo: "Concejal", nombre: "Lucio Alfonsín", bloque_partido: "UCR - JxC" },
+    { poder: "Legislativo", cargo: "Concejal", nombre: "Micaela Rípodas", bloque_partido: "UCR - JxC" },
+    { poder: "Legislativo", cargo: "Concejal", nombre: "Jorge Brucetta", bloque_partido: "Juntos por el Cambio" },
+    // Bloque Unión por la Patria
+    { poder: "Legislativo", cargo: "Concejal (Pte. Bloque)", nombre: "Marcelo Teileche", bloque_partido: "Unión por la Patria" },
+    { poder: "Legislativo", cargo: "Concejal", nombre: "Julieta Spina", bloque_partido: "Unión por la Patria" },
     { poder: "Legislativo", cargo: "Concejal", nombre: "Valeria Machín", bloque_partido: "Unión por la Patria" },
+    { poder: "Legislativo", cargo: "Concejal", nombre: "Hernán Vallejo", bloque_partido: "Unión por la Patria" },
+    { poder: "Legislativo", cargo: "Concejal", nombre: "Milagros Zannini", bloque_partido: "Unión por la Patria" },
+    { poder: "Legislativo", cargo: "Concejal", nombre: "Claudio Ortega", bloque_partido: "Unión por la Patria" },
+    // Bloques Minoritarios / Vecinalistas / La Libertad Avanza
+    { poder: "Legislativo", cargo: "Concejal", nombre: "Santiago Arias", bloque_partido: "La Libertad Avanza" },
+    { poder: "Legislativo", cargo: "Concejal", nombre: "Martín M. Rossi", bloque_partido: "Partido Vecinalista" },
     
     // PODER JUDICIAL (Local / Faltas)
     { poder: "Judicial", cargo: "Juez de Faltas", nombre: "Dr. Julio Giribaldi", bloque_partido: "Independiente" },
