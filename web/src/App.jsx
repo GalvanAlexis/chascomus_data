@@ -140,11 +140,30 @@ function App() {
                   <div className="widget-value">{loading ? "..." : (demografia?.superficie || "Sin datos")}</div>
                 </div>
 
-                <div className="widget">
-                  <div className="widget-icon">🏛️</div>
-                  <div className="widget-label">Intendente / Fundación</div>
-                  <div style={{ fontSize: '1rem', fontWeight: 'bold', marginTop: '10px' }}>{loading ? "..." : demografia?.intendente}</div>
-                  <div style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>{loading ? "..." : demografia?.fundacion}</div>
+                <div className="widget" style={{ gridColumn: '1 / -1' }}>
+                  <div className="widget-icon">⚖️</div>
+                  <div className="widget-label">Autoridades y Poderes del Estado Local</div>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px', marginTop: '15px' }}>
+                    
+                    <div style={{ padding: '15px', background: 'rgba(255,255,255,0.02)', borderRadius: '12px', borderLeft: '3px solid var(--accent)' }}>
+                      <div style={{ color: 'var(--text-muted)', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '5px' }}>Poder Ejecutivo</div>
+                      <div style={{ fontSize: '1.1rem', fontWeight: 'bold', color: '#fff' }}>{loading ? "..." : demografia?.intendente}</div>
+                      <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Intendente Municipal</div>
+                    </div>
+                    
+                    <div style={{ padding: '15px', background: 'rgba(255,255,255,0.02)', borderRadius: '12px', borderLeft: '3px solid #10b981' }}>
+                      <div style={{ color: 'var(--text-muted)', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '5px' }}>Poder Legislativo</div>
+                      <div style={{ fontSize: '1.1rem', fontWeight: 'bold', color: '#fff' }}>Concejo Deliberante</div>
+                      <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Órgano representativo de los vecinos</div>
+                    </div>
+
+                    <div style={{ padding: '15px', background: 'rgba(255,255,255,0.02)', borderRadius: '12px', borderLeft: '3px solid #f59e0b' }}>
+                      <div style={{ color: 'var(--text-muted)', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '5px' }}>Poder Judicial (Local)</div>
+                      <div style={{ fontSize: '1.1rem', fontWeight: 'bold', color: '#fff' }}>Juzgado de Paz / Faltas</div>
+                      <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Justicia de proximidad</div>
+                    </div>
+
+                  </div>
                 </div>
               </div>
             </section>
